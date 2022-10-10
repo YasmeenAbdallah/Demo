@@ -1,0 +1,48 @@
+﻿
+@model Demo.BL.Models.DepartmentVM
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="block-header">
+    <a>Edit </a>
+</div>
+<form asp-controller="Departments" asp-action="Edit">
+    <div class="msg">Add New Department</div>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input type="hidden" class="form-control" asp-for="Id">
+
+    <div class="input-group">
+        <span class="input-group-addon">
+            <i class="material-icons">person</i>
+        </span>
+        <div asp-for="Name" class="form-line">
+            <input type="text" class="form-control" asp-for="Name" placeholder="Name" required autofocus>
+        </div>
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon">
+            <i class="material-icons">lock</i>
+        </span>
+        <div asp-for="Code" class="form-line">
+            <input type="text" class="form-control" asp-for="Code" placeholder="Code" required>
+        </div>
+        <span asp-validation-for="Code" class="text-danger"></span>
+    </div>
+    <div class="row">
+
+        <a asp-controller="Departments" asp-action="Index" class="btn btn-primary">Back To Data</a>
+        <a asp-controller="Departments" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+        <input type="submit" value="Edit" class="btn btn-success" />
+        <input type="reset" value="Cancle" class="btn btn-warning" />
+    </div>
+
+
+</form>
+@section validation{
+    <script src="~/plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="~/plugins/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+}

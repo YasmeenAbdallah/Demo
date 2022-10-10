@@ -1,0 +1,47 @@
+﻿@model Demo.BL.Models.DepartmentVM
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="block-header">
+    <a>Create New Department </a>
+</div>
+
+<form asp-controller="Departments" asp-action="Create">
+    <div class="msg">Add New Department</div>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="input-group">
+        <span class="input-group-addon">
+            <i class="material-icons">person</i>
+        </span>
+        <div asp-for="Name" class="form-line">
+            <input type="text" class="form-control" asp-for="Name" placeholder="Name" required autofocus>
+        </div>
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon">
+            <i class="material-icons">lock</i>
+        </span>
+        <div asp-for="Code" class="form-line">
+            <input type="text" class="form-control" asp-for="Code" placeholder="Code" required>
+        </div>
+        <span asp-validation-for="Code" class="text-danger"></span>
+    </div>
+    <div class="row">
+
+        <div class="col-xs-4">
+            <button class="btn btn-block bg-pink waves-effect" type="submit">Add</button>
+        </div>
+        <div class="col-xs-4">
+            <button class="btn btn-block bg-pink waves-effect" type="submit">Cancel</button>
+        </div>
+    </div>
+
+
+</form>
+@section validation{
+    <script src="~/plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="~/plugins/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    
+}
+
