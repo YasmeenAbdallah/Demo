@@ -40,6 +40,10 @@ namespace Demo.DAL.Entitiy
         /// </summary>
         public string Notes { get; set; }
         /// <summary>
+        /// Address
+        /// </summary>
+        public string Address { get; set; }
+        /// <summary>
         /// the email address
         /// </summary>
         public string Email { get; set; }

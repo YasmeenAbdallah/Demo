@@ -13,6 +13,8 @@ namespace Demo.BL.Mapper
         {
             CreateMap<Department, DepartmentVM>();
             CreateMap<DepartmentVM, Department>();
+            CreateMap<Employee, EmployeeVM>();
+            CreateMap<EmployeeVM, Employee>();
         }
     }
 }

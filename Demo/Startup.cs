@@ -30,6 +30,7 @@ namespace Demo
             services.AddControllersWithViews();
             services.AddDbContextPool<DemoContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DemoConnection")));
             services.AddScoped<IDepartmentRep, DepartmentRep>();
+            services.AddScoped<IEmployeeRep, EmployeeRep>();
             services.AddAutoMapper(x => x.AddProfile(new DomainProfile()));
         }
 
