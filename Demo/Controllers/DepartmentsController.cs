@@ -65,8 +65,12 @@ namespace Demo.Controllers
         {
             var data = departmentRep.GetById(id);
             var model = mapper.Map<DepartmentVM>(data);
+            if(model != null)
             return View(model);
-          
+            else 
+                return RedirectToAction("Index");
+
+
         }
         [HttpPost]
         public IActionResult Edit(DepartmentVM model)
