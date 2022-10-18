@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Demo.BL.Mapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,7 @@ namespace Demo
             services.AddControllersWithViews();
             services.AddDbContextPool<DemoContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DemoConnection")));
             services.AddScoped<IDepartmentRep, DepartmentRep>();
+            services.AddAutoMapper(x => x.AddProfile(new DomainProfile()));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

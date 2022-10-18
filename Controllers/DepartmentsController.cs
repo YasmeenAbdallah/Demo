@@ -1,6 +1,8 @@
-﻿using Demo.BL.Interface;
+﻿using AutoMapper;
+using Demo.BL.Interface;
 using Demo.BL.Models;
 using Demo.BL.Repository;
+using Demo.DAL.Entitiy;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,18 +15,22 @@ namespace Demo.Controllers
     {
        
         private readonly IDepartmentRep departmentRep;
+        private readonly IMapper mapper;
 
-        public DepartmentsController(IDepartmentRep departmentRep)
+        public DepartmentsController(IDepartmentRep departmentRep ,IMapper mapper)
         {
             this.departmentRep = departmentRep;
+            this.mapper = mapper;
         }
         public IActionResult Index()
         {
             var data = departmentRep.Get();
-           return View(data);
+           var model = mapper.Map<IEnumerable<DepartmentVM>>(data);
+            return View(model);
         }
         [HttpGet]
         public IActionResult Create() {
+
             return View();
         }
         [HttpPost]
@@ -32,7 +38,8 @@ namespace Demo.Controllers
         {
             if (ModelState.IsValid)
             {
-                departmentRep.Create(model);
+                var data = mapper.Map<Department>(model);
+                departmentRep.Create(data);
              return  RedirectToAction("Index");
             }
             return View(model);
@@ -43,7 +50,8 @@ namespace Demo.Controllers
             try
             {
                 var data =departmentRep.GetById(id);
-                return View(data);
+                var model = mapper.Map<DepartmentVM>(data);
+                return View(model);
 
             }
             catch (Exception)
@@ -56,23 +64,28 @@ namespace Demo.Controllers
         public IActionResult Edit(int id)
         {
             var data = departmentRep.GetById(id);
-            return View(data);
+            var model = mapper.Map<DepartmentVM>(data);
+            return View(model);
+          
         }
         [HttpPost]
         public IActionResult Edit(DepartmentVM model)
         {
             if (ModelState.IsValid)
             {
-                departmentRep.Edit(model);
+                var data = mapper.Map<Department>(model);
+               
+                departmentRep.Edit(data);
                 return RedirectToAction("Index");
             }
             return View(model);
         }
     
         [HttpGet]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(DepartmentVM model)
         {
-            departmentRep.Delete(id);
+            var data = mapper.Map<Department>(model);
+            departmentRep.Delete(data);
             return RedirectToAction("Index");
 
         }
