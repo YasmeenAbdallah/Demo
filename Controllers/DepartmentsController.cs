@@ -1,4 +1,5 @@
-﻿using Demo.BL.Models;
+﻿using Demo.BL.Interface;
+using Demo.BL.Models;
 using Demo.BL.Repository;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,10 +11,16 @@ namespace Demo.Controllers
 {
     public class DepartmentsController : Controller
     {
-        DepartmentRep obj = new DepartmentRep();
+       
+        private readonly IDepartmentRep departmentRep;
+
+        public DepartmentsController(IDepartmentRep departmentRep)
+        {
+            this.departmentRep = departmentRep;
+        }
         public IActionResult Index()
         {
-            var data = obj.Get();
+            var data = departmentRep.Get();
            return View(data);
         }
         [HttpGet]
@@ -25,7 +32,7 @@ namespace Demo.Controllers
         {
             if (ModelState.IsValid)
             {
-                obj.Create(model);
+                departmentRep.Create(model);
              return  RedirectToAction("Index");
             }
             return View(model);
@@ -35,7 +42,7 @@ namespace Demo.Controllers
         {
             try
             {
-                var data =obj.GetById(id);
+                var data =departmentRep.GetById(id);
                 return View(data);
 
             }
@@ -48,7 +55,7 @@ namespace Demo.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var data = obj.GetById(id);
+            var data = departmentRep.GetById(id);
             return View(data);
         }
         [HttpPost]
@@ -56,7 +63,7 @@ namespace Demo.Controllers
         {
             if (ModelState.IsValid)
             {
-                obj.Edit(model);
+                departmentRep.Edit(model);
                 return RedirectToAction("Index");
             }
             return View(model);
@@ -65,7 +72,7 @@ namespace Demo.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            obj.Delete(id);
+            departmentRep.Delete(id);
             return RedirectToAction("Index");
 
         }
