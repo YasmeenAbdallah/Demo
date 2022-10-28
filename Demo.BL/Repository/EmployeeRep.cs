@@ -49,6 +49,12 @@ namespace Demo.BL.Repository
             return data;
         }
 
+        public IEnumerable<Employee> SearchByName(string name)
+        {
+            var data = db.Employee.Include("Department").Where(a => a.Name.Contains(name));
+            return data;
+        }
+
 
         //==================Refactory================================
         private Employee GetDepById(int id)

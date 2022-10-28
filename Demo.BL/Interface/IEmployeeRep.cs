@@ -13,6 +13,11 @@ namespace Demo.BL.Interface
         /// <returns></returns>
         IEnumerable<Employee> Get();
         /// <summary>
+        /// Search By Name
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<Employee> SearchByName(string name);
+        /// <summary>
         /// get departmant obj by id
         /// </summary>
         /// <param name="id"></param>

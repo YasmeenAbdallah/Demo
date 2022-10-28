@@ -24,13 +24,24 @@ namespace Demo.Controllers
             this.departmentRep = departmentRep;
             this.mapper = mapper;
         }
-        public IActionResult Index()
+        public IActionResult Index(string SearchValue="")
         {
-            var data = employeeRep.Get();
-            var model = mapper.Map<IEnumerable<EmployeeVM>>(data);
-          
+            
+            if (SearchValue == "")
+            {
+                var data = employeeRep.Get();
+                var model = mapper.Map<IEnumerable<EmployeeVM>>(data);
 
-            return View(model);
+                return View(model);
+            }
+            else
+            {
+                var data = employeeRep.SearchByName(SearchValue);
+                var model = mapper.Map<IEnumerable<EmployeeVM>>(data);
+
+                return View(model);
+            }
+
         }
         [HttpGet]
         public IActionResult Create()
