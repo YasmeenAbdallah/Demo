@@ -32,6 +32,10 @@ namespace Demo.DAL.Entitiy
         /// </summary>
         public DateTime HireDate { get; set; }
         /// <summary>
+        /// the Creation date
+        /// </summary>
+        public DateTime CreationDate { get; set; }
+        /// <summary>
         /// is the account is active
         /// </summary>
         public bool IsActive { get; set; }

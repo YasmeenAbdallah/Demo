@@ -6,8 +6,12 @@ using System.Text;
 
 namespace Demo.BL.Models
 {
-    class EmployeeVM
+    public class EmployeeVM
     {
+        public EmployeeVM()
+        {
+            CreationDate = DateTime.Now;
+        }
         /// <summary>
         /// the employee id
         /// </summary>
@@ -32,6 +36,10 @@ namespace Demo.BL.Models
         /// the hire date
         /// </summary>
         public DateTime HireDate { get; set; }
+        /// <summary>
+        /// the Creation date
+        /// </summary>
+        public DateTime CreationDate { get; set; }
         /// <summary>
         /// is the account is active
         /// </summary>

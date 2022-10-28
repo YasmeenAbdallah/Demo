@@ -39,7 +39,7 @@ namespace Demo.BL.Repository
 
         public IEnumerable<Employee> Get()
         {
-            var data = db.Employee.Select(a => a);
+            var data = db.Employee.Include("Department").Select(a => a);
             return data;
         }
 
